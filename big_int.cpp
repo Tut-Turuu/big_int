@@ -135,19 +135,38 @@ BigInt& BigInt::operator*=(const BigInt& other) {
 }
 
 bool BigInt::operator>(const BigInt& other) {
+    if (digits.size() > other.digits.size()) return true;
+    if (digits.size() < other.digits.size()) return false;
 
+    for (int i = digits.size() - 1; i != -1; --i) {
+        if (digits[i] > other.digits[i]) return true;
+        if (digits[i] < other.digits[i]) return false;
+    }
+    return false;
 }
 
 bool BigInt::operator<(const BigInt& other) {
+    if (digits.size() < other.digits.size()) return true;
+    if (digits.size() > other.digits.size()) return false;
 
+    for (int i = digits.size() - 1; i != -1; --i) {
+        if (digits[i] < other.digits[i]) return true;
+        if (digits[i] > other.digits[i]) return false;
+    }
+    return false;
 }
 
 bool BigInt::operator==(const BigInt& other) {
+    if (digits.size() != other.digits.size()) return false;
 
+    for (int i = digits.size() - 1; i != -1; --i) {
+        if (digits[i] != other.digits[i]) return false;
+    }
+    return true;;
 }
 
 bool BigInt::operator!=(const BigInt& other) {
-
+    return !(*this == other); 
 }
 
 std::ostream& operator<<(std::ostream& out, const BigInt& data) {

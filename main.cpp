@@ -4,8 +4,8 @@
 
 int main() {
 
-    BigInt A("78946");
-    BigInt B("49494");
+    BigInt A("50800004");
+    BigInt B("494948");
 
     
 
